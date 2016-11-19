@@ -1,13 +1,11 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', function ($scope) {
-    $scope.testVariable = 'Hello!';
-    $scope.testFunction = function () {
-        alert('Hi!');
-    };
+myApp.controller('mainController', function ($scope, $log, $filter) {
 
-    console.log($scope);
+    $scope.name = 'Tony';
+    $scope.formattedName = $filter('uppercase')($scope.name);
 
-    $scope.testFunction();
+    $log.info( $scope.name );
+    $log.info( $scope.formattedName );
 
 });
