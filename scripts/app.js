@@ -1,13 +1,11 @@
 var myApp = angular.module('myApp', ['ngMessages', 'ngResource']);
 
-myApp.controller('mainController', ['$scope', '$log', '$filter', '$resource', function ($scope, $log, $filter, $resource) {
+myApp.controller('mainController', ['$scope', '$timeout', function ($scope, $timeout) {
 
     $scope.name = 'Tony';
-    $scope.formattedName = $filter('uppercase')($scope.name);
 
-    $log.info( $scope.name );
-    $log.info( $scope.formattedName );
-
-    console.log( $resource );
+    $timeout(function () {
+        $scope.name = 'Everybody';
+    }, 3000);
 
 }]);
