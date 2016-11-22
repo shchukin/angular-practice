@@ -6,6 +6,14 @@ myApp.controller('mainController', ['$scope', '$filter', function($scope, $filte
 
     $scope.lowerhandle = function () {
         return $filter('lowercase')( $scope.handle );
-    }
+    };
+
+    setTimeout(function () {
+        $scope.$apply(function () {
+            $scope.handle = 'anothertwitterhandle';
+            console.log( 'Scope has been changed!' );
+        });
+    }, 3000);
+
 
 }]);
