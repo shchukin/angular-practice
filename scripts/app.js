@@ -1,30 +1,23 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.controller('mainController', ['$scope', '$filter', '$http', function($scope, $filter, $http) {
+myApp.config(function ($routeProvider) {
 
-    $scope.handle = '';
+    $routeProvider
 
-    $scope.lowerhandle = function () {
-        return $filter('lowercase')( $scope.handle );
-    };
-
-    $scope.characters = 5;
-
-    // $scope.rules = [
-    //     { rulename: "Must be 5 characters" },
-    //     { rulename: "Must not be used elsewhere" },
-    //     { rulename: "Must be cool" }
-    // ]
-
-
-    $http.get('/angular/data/rules.json')
-        .success(function (data) {
-            $scope.rules = data;
-            console.log( $scope.rules );
+        .when('/', {
+            templateUrl: 'pages/main.html',
+            controller: 'mainController'
         })
-        .error(function (data, status) {
-            console.log(status);
-            console.log(data);
+        .when('/second', {
+            templateUrl: 'pages/second.html',
+            controller: 'secondController'
         })
+});
 
+myApp.controller('mainController', ['$scope', function($scope) {
+    $scope.name = 'Main';
+}]);
+
+myApp.controller('secondController', ['$scope', function($scope) {
+    $scope.name = 'Second';
 }]);
